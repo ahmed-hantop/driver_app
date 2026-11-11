@@ -1,0 +1,327 @@
+name: Deploy DMS Backend (Monorepo)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'DMS-development-digitalmediafox/**'
+      - '.github/workflows/deploy-dms-backend.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: dms-backend-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST || vars.DEPLOY_HOST || '68.65.123.68' }}
+      DEPLOY_PORT: ${{ secrets.DEPLOY_PORT || vars.DEPLOY_PORT || '21098' }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER || vars.DEPLOY_USER || 'dobsykjq' }}
+      DEPLOY_REPO_PATH: ${{ secrets.DEPLOY_REPO_PATH || vars.DEPLOY_REPO_PATH || '/home/dobsykjq/dms.dobs.cloud' }}
+      DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY || secrets.SSH_PRIVATE_KEY }}
+      DEPLOY_MIGRATION_PATHS: ${{ secrets.DEPLOY_MIGRATION_PATHS || vars.DEPLOY_MIGRATION_PATHS || '' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect newly added migration files
+        shell: bash
+        run: |
+          set -e
+
+          mkdir -p .github/tmp
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+          RANGE=""
+
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            RANGE="$BEFORE..$AFTER"
+          elif git rev-parse HEAD~1 >/dev/null 2>&1; then
+            RANGE="HEAD~1..HEAD"
+          fi
+
+          paths=""
+
+          if [ -n "$RANGE" ]; then
+            while IFS= read -r file; do
+              rel="${file#DMS-development-digitalmediafox/}"
+              if [ -n "$rel" ] && [ "$rel" != "$file" ]; then
+                if [ -z "$paths" ]; then
+                  paths="$rel"
+                else
+                  paths="$paths,$rel"
+                fi
+              fi
+            done < <(git diff --name-status "$RANGE" | awk '$1=="A" && $2 ~ /^DMS-development-digitalmediafox\/database\/migrations\/.*\.php$/ {print $2}')
+          fi
+
+          echo "NEW_MIGRATION_PATHS=$paths" >> "$GITHUB_ENV"
+
+          if [ -n "$paths" ]; then
+            echo "Detected new migration files: $paths"
+          else
+            echo "No newly-added migration files detected in this revision."
+          fi
+
+      - name: Detect changed backend files
+        shell: bash
+        run: |
+          set -e
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+          RANGE=""
+
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            RANGE="$BEFORE..$AFTER"
+          elif git rev-parse HEAD~1 >/dev/null 2>&1; then
+            RANGE="HEAD~1..HEAD"
+          fi
+
+          CHANGED_LIST=".github/tmp/backend_changed_files.txt"
+          DELETED_LIST=".github/tmp/backend_deleted_files.txt"
+
+          : > "$CHANGED_LIST"
+          : > "$DELETED_LIST"
+
+          if [ -z "$RANGE" ]; then
+            echo "CHANGED_FILES_COUNT=0" >> "$GITHUB_ENV"
+            echo "DELETED_FILES_COUNT=0" >> "$GITHUB_ENV"
+            echo "No valid git range found. Delta-only mode will sync nothing for this run."
+            exit 0
+          fi
+
+          git diff --name-only --diff-filter=ACMRTUXB "$RANGE" -- DMS-development-digitalmediafox/ \
+            | sed 's#^DMS-development-digitalmediafox/##' \
+            | grep -vE '^(storage/|bootstrap/cache/|public/storage/|\.env$)' \
+            > "$CHANGED_LIST" || true
+
+          git diff --name-only --diff-filter=D "$RANGE" -- DMS-development-digitalmediafox/ \
+            | sed 's#^DMS-development-digitalmediafox/##' \
+            | grep -vE '^(storage/|bootstrap/cache/|public/storage/|\.env$)' \
+            > "$DELETED_LIST" || true
+
+          CHANGED_COUNT=$(wc -l < "$CHANGED_LIST" | tr -d ' ')
+          DELETED_COUNT=$(wc -l < "$DELETED_LIST" | tr -d ' ')
+
+          echo "CHANGED_FILES_COUNT=$CHANGED_COUNT" >> "$GITHUB_ENV"
+          echo "DELETED_FILES_COUNT=$DELETED_COUNT" >> "$GITHUB_ENV"
+
+          echo "Changed backend files: $CHANGED_COUNT"
+          echo "Deleted backend files: $DELETED_COUNT"
+
+      - name: Validate SSH key secret
+        shell: bash
+        run: |
+          if [ -z "$DEPLOY_SSH_KEY" ]; then
+            echo "::error::Missing SSH private key. Add DEPLOY_SSH_KEY (or SSH_PRIVATE_KEY) in repository Secrets."
+            exit 1
+          fi
+
+      - name: Load SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ env.DEPLOY_SSH_KEY }}
+
+      - name: Sync backend files to server root path
+        shell: bash
+        run: |
+          SSH_CMD="ssh -p ${DEPLOY_PORT:-22} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          CHANGED_LIST=".github/tmp/backend_changed_files.txt"
+          DELETED_LIST=".github/tmp/backend_deleted_files.txt"
+
+          if [ -s "$CHANGED_LIST" ]; then
+            echo "[sync] Uploading changed/new backend files only"
+            rsync -az \
+              --files-from="$CHANGED_LIST" \
+              -e "$SSH_CMD" \
+              DMS-development-digitalmediafox/ \
+              "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_REPO_PATH}/"
+          else
+            echo "[sync] No changed/new backend files to upload"
+          fi
+
+          if [ -s "$DELETED_LIST" ]; then
+            echo "[sync] Applying deleted file removals on server"
+            while IFS= read -r rel; do
+              [ -z "$rel" ] && continue
+              $SSH_CMD "${DEPLOY_USER}@${DEPLOY_HOST}" "rm -f '${DEPLOY_REPO_PATH}/${rel}'" || true
+            done < "$DELETED_LIST"
+          else
+            echo "[sync] No deleted backend files to remove"
+          fi
+
+          # Keep Vite build assets healthy even if unchanged files are missing on server.
+          if [ -d "DMS-development-digitalmediafox/public/build" ]; then
+            echo "[sync] Ensuring public/build assets are present"
+            rsync -az \
+              -e "$SSH_CMD" \
+              DMS-development-digitalmediafox/public/build/ \
+              "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_REPO_PATH}/public/build/"
+          fi
+
+          echo "[sync] Ensuring critical public files are present"
+          for rel in \
+            "public/logo.png" \
+            "public/favicon.ico" \
+            "public/js/bootstrap.bundle.min.js" \
+            "public/js/google-translate.js" \
+            "public/css/custom-style.css"; do
+            if [ -f "DMS-development-digitalmediafox/$rel" ]; then
+              rsync -az \
+                -e "$SSH_CMD" \
+                "DMS-development-digitalmediafox/$rel" \
+                "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_REPO_PATH}/$rel"
+            fi
+          done
+
+      - name: Run Laravel deploy commands
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          NEW_MIGRATION_PATHS: ${{ env.NEW_MIGRATION_PATHS }}
+          DEPLOY_MIGRATION_PATHS: ${{ env.DEPLOY_MIGRATION_PATHS }}
+        with:
+          host: ${{ env.DEPLOY_HOST }}
+          port: ${{ env.DEPLOY_PORT }}
+          username: ${{ env.DEPLOY_USER }}
+          key: ${{ env.DEPLOY_SSH_KEY }}
+          command_timeout: 30m
+          envs: NEW_MIGRATION_PATHS,DEPLOY_MIGRATION_PATHS
+          script_stop: true
+          script: |
+            set -e
+
+            DEPLOY_DIR="${{ env.DEPLOY_REPO_PATH }}"
+
+            if [ -z "$DEPLOY_DIR" ]; then
+              echo "DEPLOY_REPO_PATH secret is missing."
+              exit 1
+            fi
+
+            cd "$DEPLOY_DIR"
+
+            if [ ! -f artisan ]; then
+              echo "artisan not found at $DEPLOY_DIR"
+              exit 1
+            fi
+
+            if [ ! -f .env ]; then
+              echo ".env not found at $DEPLOY_DIR. Create server .env with production DB credentials before deploy."
+              exit 1
+            fi
+
+            # Remove stale duplicate component files from older manual uploads.
+            rm -f app/Livewire/DMS/PayrollList.php
+            rm -f app/Livewire/DMS/CoordinatorReport/PayrollList.php
+            rm -f app/Livewire/DMS/CoordinatorReport/Payrolllist.php
+            rm -f app/Livewire/DMS/PlatformIdsReport/PayrollList.php
+            rm -f app/Livewire/DMS/PlatformIdsReport/Payrolllist.php
+
+            echo "[deploy] optimize:clear"
+            php artisan optimize:clear
+
+            if command -v composer >/dev/null 2>&1; then
+              echo "[deploy] composer install"
+              composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            else
+              echo "Composer not found in PATH"
+              exit 1
+            fi
+
+            # Root-served cPanel setup expects /build and /vendor/livewire assets at repo root.
+            # Keep them mirrored from framework-generated locations under public/ and vendor/livewire/livewire/dist.
+            if [ -d public/build ]; then
+              echo "[deploy] mirroring public/build -> build"
+              mkdir -p build
+              rsync -az --delete public/build/ build/
+            fi
+
+            if [ -f vendor/livewire/livewire/dist/livewire.js ]; then
+              echo "[deploy] ensuring vendor/livewire/livewire.js"
+              cp -f vendor/livewire/livewire/dist/livewire.js vendor/livewire/livewire.js
+            fi
+
+            if [ -f vendor/livewire/livewire/dist/livewire.min.js.map ]; then
+              cp -f vendor/livewire/livewire/dist/livewire.min.js.map vendor/livewire/livewire.min.js.map
+            fi
+
+            MIGRATION_PATHS="$DEPLOY_MIGRATION_PATHS"
+            if [ -z "$MIGRATION_PATHS" ]; then
+              MIGRATION_PATHS="$NEW_MIGRATION_PATHS"
+            fi
+
+            echo "[deploy] migration paths input: '${MIGRATION_PATHS}'"
+            if [ -z "$MIGRATION_PATHS" ]; then
+              echo "No migration paths provided or detected. Skipping migrations."
+            else
+              ran_any_path=0
+              path_migration_failed=0
+
+              normalized_paths="$(printf '%s' "$MIGRATION_PATHS" | tr ',' '\n')"
+              migration_paths_file="$(mktemp)"
+              printf '%s\n' "$normalized_paths" > "$migration_paths_file"
+
+              while IFS= read -r raw_path; do
+                # Normalize: trim whitespace, strip wrapping quotes, remove CR, and strip monorepo prefix.
+                path="$(printf '%s' "$raw_path" \
+                  | tr -d '\r' \
+                  | sed -e "s/^[[:space:]'\"]*//" -e "s/[[:space:]'\"]*$//")"
+                path="${path#DMS-development-digitalmediafox/}"
+
+                if [ -z "$path" ]; then
+                  continue
+                fi
+
+                if [ -f "$path" ]; then
+                  echo "Running migration path: $path"
+                  ran_any_path=1
+                  if ! php artisan migrate --force --path="$path" -v; then
+                    echo "[deploy] path migration failed: $path"
+                    path_migration_failed=1
+                    break
+                  fi
+                else
+                  echo "Skipping migration path (not found): $path"
+                fi
+              done < "$migration_paths_file"
+
+              rm -f "$migration_paths_file"
+
+              if [ "$ran_any_path" -eq 0 ] || [ "$path_migration_failed" -eq 1 ]; then
+                echo "[deploy] running fallback full migrate"
+                php artisan migrate --force -v
+              fi
+            fi
+
+            echo "[deploy] optimize"
+            if ! php artisan optimize; then
+              echo "[deploy] optimize failed, keeping app online with cleared cache only"
+              php artisan optimize:clear || true
+            fi
+
+            echo "[deploy] queue restart"
+            php artisan queue:restart || true
+
+            if [ "${{ secrets.DEPLOY_RUN_NPM_BUILD || vars.DEPLOY_RUN_NPM_BUILD }}" = "1" ]; then
+              if command -v npm >/dev/null 2>&1; then
+                npm ci
+                npm run build
+              else
+                echo "DEPLOY_RUN_NPM_BUILD=1 but npm not found in PATH"
+                exit 1
+              fi
+            fi
+
+            if [ -d storage ] && [ -d bootstrap/cache ]; then
+              chmod -R ug+rwX storage bootstrap/cache || true
+            fi
+
+            echo "DMS backend deployment completed successfully."

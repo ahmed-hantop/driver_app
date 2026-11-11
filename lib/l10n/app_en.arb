@@ -1,0 +1,271 @@
+{
+  "appTitle": "Driver Dashboard",
+  "english": "English",
+  "arabic": "Arabic",
+  "iqama": "Iqama Number",
+  "password": "Password",
+  "login": "Login",
+  "loginFailed": "Login failed. Please check your credentials or try again later.",
+  "forgotPassword": "Forgot password?",
+  "register": "Register / Become our delivery driver",
+  "mapsError": "Could not open maps",
+  "mapsPermission": "Location permission is required for maps",
+  "cameraPermissionDenied": "Camera permission denied. Enable it in Settings.",
+  "cameraPermissionRequired": "Camera permission is required.",
+  "mediaPermissionDenied": "Media/photos permission denied. Enable it in Settings.",
+  "mediaPermissionRequired": "Media/photos permission is required.",
+  "locationPermissionDenied": "Location permission denied. Enable it in Settings.",
+  "failedToLoadData": "Failed to load data. Please try again.",
+  "unableLoadProfile": "Unable to load profile",
+  "alreadyCheckedIn": "Already checked in",
+  "meterReadingRequired": "Meter reading required",
+  "meterImageRequired": "Meter image required",
+  "checkinSuccess": "Checked in successfully",
+  "checkinFailed": "Check-in failed",
+  "outMeterImageRequired": "Out meter image required",
+  "checkoutSuccess": "Checked out successfully",
+  "checkoutFailed": "Check-out failed",
+  "alreadyCheckedOut": "Already checked out",
+  "profileRequired": "Name and mobile are required",
+  "profileUpdateSuccess": "Profile updated",
+  "profileUpdateFailed": "Profile update failed",
+  "selectBusinessIdFirst": "Select a business ID first",
+  "orderNumberRequired": "Order number is required",
+  "orderCreated": "Order created",
+  "orderCreateFailed": "Failed to create order",
+  "orderPicked": "Order picked up",
+  "orderPickupFailed": "Pickup failed",
+  "cashAmountRequired": "Amount received is required for cash",
+  "orderDelivered": "Order delivered",
+  "orderDeliveryFailed": "Delivery failed",
+  "orderCancelled": "Order cancelled",
+  "orderCancelFailed": "Cancel failed",
+  "home": "Home",
+  "orders": "Orders",
+  "checkInOut": "Check-in/out",
+  "profile": "Profile",
+  "driverNameFallback": "Driver Name",
+  "unknown": "Unknown",
+  "logout": "Logout",
+  "ordersSelected": "Orders (selected)",
+  "deliveredPercent": "Delivered %",
+  "delivered": "Delivered",
+  "pickup": "Pickup",
+  "cancelled": "Cancelled",
+  "thisMonth": "This Month",
+  "assignedVehicle": "Assigned Vehicle",
+  "plate": "Plate: ",
+  "requestsTitle": "Requests",
+  "requestsSubtitle": "Fuel & internet recharge requests",
+  "businessesAndIds": "Businesses & IDs",
+  "checkinRequiredAccess": "Check-in required to access IDs",
+  "checkinPrompt": "Please check-in to unlock assigned business IDs and start orders.",
+  "goToCheckin": "Go to Check-in",
+  "noIdsAssigned": "No IDs assigned yet. Pull to refresh or contact dispatch.",
+  "platformId": "Platform ID: ",
+  "currentLocation": "Current Location",
+  "noAddress": "No address available",
+  "coordinates": "Coordinates: {lat}, {lng}",
+  "@coordinates": {
+    "placeholders": {
+      "lat": {},
+      "lng": {}
+    }
+  },
+  "openInMaps": "Open in Maps",
+  "ordersHeading": "Orders",
+  "noOrders": "No orders found",
+  "active": "Active",
+  "completed": "Completed",
+  "statusCancelled": "Cancelled",
+  "statusDelivered": "Delivered",
+  "statusPicked": "Picked up",
+  "statusPending": "Pending",
+  "orderFallback": "Order {id}",
+  "@orderFallback": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "orderNumberValue": "Order #: {orderNumber}",
+  "@orderNumberValue": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "businessIdValue": "Business ID: {value}",
+  "@businessIdValue": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "pickupTime": "Pickup: {time}",
+  "@pickupTime": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "deliveredTime": "Delivered: {time}",
+  "@deliveredTime": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "working": "Working...",
+  "markPickup": "Mark Pickup",
+  "deliverAction": "Deliver",
+  "paymentType": "Payment Type",
+  "wallet": "Wallet",
+  "cash": "Cash",
+  "online": "Online",
+  "amountReceivedRequiredCash": "Amount received (required for cash)",
+  "amountPaidOptional": "Amount paid (optional)",
+  "cancelOrderAction": "Cancel Order",
+  "cancelReasonLabel": "Cancel reason",
+  "cancelReasonHint": "Enter reason",
+  "cancelReasonRequired": "Reason is required",
+  "cancelReasonTypeRequired": "Select a cancel reason",
+  "cancelByCustomer": "Cancelled by customer",
+  "cancelByBusiness": "Cancelled by {businessName}",
+  "@cancelByBusiness": {
+    "placeholders": {
+      "businessName": {}
+    }
+  },
+  "cancelByOther": "Other",
+  "submitting": "Submitting...",
+  "markDelivered": "Mark Delivered",
+  "checkinTitle": "Check-in",
+  "meterReading": "Meter Reading",
+  "meterReadingHintCurrent": "Enter current meter reading",
+  "uploadMeterImage": "Upload Meter Image",
+  "clickSelectImage": "Click to select image",
+  "profileTakePhoto": "Take photo",
+  "profileChooseFile": "Choose file",
+  "checkingIn": "Checking in...",
+  "checkoutTitle": "Check-out",
+  "meterReadingHintFinal": "Enter final meter reading",
+  "checkingOut": "Checking out...",
+  "personalInformation": "Personal Information",
+  "fullName": "Full Name",
+  "mobileNumber": "Mobile Number",
+  "nationality": "Nationality",
+  "language": "Language",
+  "changePassword": "Change Password",
+  "leaveBlankPassword": "Leave blank if you don't want to change your password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "saving": "Saving...",
+  "saveChanges": "Save Changes",
+  "newOrderFor": "New Order for {businessName}",
+  "@newOrderFor": {
+    "placeholders": {
+      "businessName": {}
+    }
+  },
+  "businessIdLabel": "Business ID: {value}",
+  "@businessIdLabel": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "orderNumberInputLabel": "Order Number",
+  "orderNumberHint": "Enter order number",
+  "creating": "Creating...",
+  "createOrder": "Create Order",
+  "deliverOrderTitle": "Deliver order {orderNumber}",
+  "@deliverOrderTitle": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "splashCheckingUpdates": "Checking updates...",
+  "splashCheckingVersion": "Checking app version...",
+  "splashValidatingSession": "Validating session...",
+  "splashOpeningApp": "Opening app...",
+  "splashUpdateCheckFailedOpening": "Update check failed. Opening app...",
+  "splashUpdatesUnavailableOpening": "Updates unavailable in this build. Opening app...",
+  "splashUpdateDownloadedRestarting": "Update downloaded. Restarting app...",
+  "splashUpdateReadyTitle": "Update ready",
+  "splashUpdateReadyBody": "Latest patch downloaded. App will now close so you can reopen with the update.",
+  "forceUpdateTitle": "Update Required",
+  "forceUpdateLinkMissing": "Update link is not configured on server.",
+  "forceUpdateLinkInvalidConfig": "Update link is not configured correctly.",
+  "forceUpdateLinkOpenFailed": "Could not open the update link.",
+  "forceUpdateLinkInvalid": "Invalid update link.",
+  "forceUpdateOpening": "Opening...",
+  "forceUpdateNow": "Update Now",
+  "forceUpdateBlockedMessage": "This version is blocked. Please update to continue.",
+  "forceUpdateDefaultMessage": "A new app version is available. Please update to continue.",
+  "forceUpdateVersionSummary": "Current: {currentVersion}  Latest: {latestVersion}",
+  "@forceUpdateVersionSummary": {
+    "placeholders": {
+      "currentVersion": {},
+      "latestVersion": {}
+    }
+  },
+  "forgotRecoverTitle": "Recover your account",
+  "forgotRecoverSubtitle": "Enter your iqama number or email to get a reset code.",
+  "forgotIqamaOrEmailLabel": "Iqama or email",
+  "forgotIqamaOrEmailValidation": "Please enter your iqama or email.",
+  "forgotEnterIqamaOrEmail": "Enter your iqama or email.",
+  "forgotEnterIqamaOrEmailFirst": "Enter your iqama or email first.",
+  "forgotOtpSent": "OTP has been sent to your email.",
+  "forgotOtpSendFailed": "Unable to send OTP.",
+  "forgotEnterOtp": "Enter the 6-digit OTP.",
+  "forgotOtpVerified": "OTP verified. You can reset your password now.",
+  "forgotOtpVerificationFailed": "OTP verification failed.",
+  "forgotOtpResent": "OTP resent. Please check your email.",
+  "forgotOtpResendFailed": "Unable to resend OTP.",
+  "forgotVerifyOtpFirst": "Verify the OTP first.",
+  "forgotPasswordResetSuccessMessage": "Password has been reset. Please log in with the new password.",
+  "forgotPasswordResetFailed": "Unable to reset password.",
+  "forgotPasswordResetSnackBar": "Password reset successfully.",
+  "forgotSendOtp": "Send OTP",
+  "forgotOtpSentPrompt": "We sent an OTP to your email. Enter it below to continue.",
+  "forgotOtpLabel": "6-digit OTP",
+  "forgotVerifyOtp": "Verify OTP",
+  "forgotResend": "Resend",
+  "forgotConfirmPassword": "Confirm password",
+  "forgotPasswordMinLength": "Password must be at least 8 characters.",
+  "forgotPasswordsMismatch": "Passwords do not match.",
+  "forgotResetPassword": "Reset password",
+  "notificationPickupPendingTitle": "Pickup pending",
+  "notificationPickupPendingBody": "Order {orderNumber} needs pickup.",
+  "@notificationPickupPendingBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationDeliveryPendingTitle": "Delivery pending",
+  "notificationDeliveryPendingBody": "Order {orderNumber} needs delivery.",
+  "@notificationDeliveryPendingBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationCheckinCompleteTitle": "Check-in complete",
+  "notificationCheckinCompleteBody": "You have successfully checked in.",
+  "notificationCheckoutCompleteTitle": "Checkout complete",
+  "notificationCheckoutCompleteBody": "You have successfully checked out.",
+  "notificationOrderQueuedTitle": "Order queued",
+  "notificationOrderQueuedBody": "Order {orderNumber} saved. Sync will run automatically.",
+  "@notificationOrderQueuedBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationOrderPickupQueuedTitle": "Order pickup queued",
+  "notificationOrderDeliveryQueuedTitle": "Order delivery queued",
+  "notificationOrderSavedForSyncBody": "Order {orderNumber} saved for sync.",
+  "@notificationOrderSavedForSyncBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "toastOrderQueuedLocalSync": "Order queued and saved locally. It will sync within 5 minutes.",
+  "toastPickupQueued": "Pickup queued. Sync will run automatically (max 5 min).",
+  "toastCancellationQueued": "Cancellation queued. Sync will run automatically (max 5 min).",
+  "toastDeliveryQueued": "Delivery queued. Sync will run automatically (max 5 min)."
+}

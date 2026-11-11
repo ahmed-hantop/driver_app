@@ -1,0 +1,1 @@
+ /Users/ahmed/StudioProjects/DMS/lib/l10n/app_localizations_ar.dart /Users/ahmed/StudioProjects/DMS/lib/l10n/app_localizations_en.dart /Users/ahmed/StudioProjects/DMS/lib/l10n/app_localizations.dart:  /Users/ahmed/StudioProjects/DMS/l10n.yaml /Users/ahmed/StudioProjects/DMS/lib/l10n/app_ar.arb /Users/ahmed/StudioProjects/DMS/lib/l10n/app_en.arb

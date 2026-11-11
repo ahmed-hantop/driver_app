@@ -1,0 +1,271 @@
+{
+  "appTitle": "لوحة السائق",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "iqama": "رقم الإقامة",
+  "password": "كلمة المرور",
+  "login": "تسجيل الدخول",
+  "loginFailed": "فشل تسجيل الدخول. يرجى التحقق من البيانات.",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "register": "سجل / كن سائق توصيل",
+  "mapsError": "تعذر فتح الخرائط",
+  "mapsPermission": "مطلوب إذن الموقع للخرائط",
+  "cameraPermissionDenied": "تم رفض إذن الكاميرا. قم بتمكينه من الإعدادات.",
+  "cameraPermissionRequired": "إذن الكاميرا مطلوب.",
+  "mediaPermissionDenied": "تم رفض إذن الصور/الوسائط. قم بتمكينه من الإعدادات.",
+  "mediaPermissionRequired": "مطلوب إذن الصور/الوسائط.",
+  "locationPermissionDenied": "تم رفض إذن الموقع. قم بتمكينه من الإعدادات.",
+  "failedToLoadData": "فشل تحميل البيانات. يرجى المحاولة مرة أخرى.",
+  "unableLoadProfile": "تعذر تحميل الملف الشخصي",
+  "alreadyCheckedIn": "تم تسجيل الحضور بالفعل",
+  "meterReadingRequired": "مطلوب إدخال قراءة العداد",
+  "meterImageRequired": "صورة العداد مطلوبة",
+  "checkinSuccess": "تم تسجيل الحضور بنجاح",
+  "checkinFailed": "فشل تسجيل الحضور",
+  "outMeterImageRequired": "مطلوب صورة عداد الخروج",
+  "checkoutSuccess": "تم إنهاء الحضور بنجاح",
+  "checkoutFailed": "فشل إنهاء الحضور",
+  "alreadyCheckedOut": "تم إنهاء الحضور بالفعل",
+  "profileRequired": "الاسم ورقم الجوال مطلوبان",
+  "profileUpdateSuccess": "تم تحديث الملف الشخصي",
+  "profileUpdateFailed": "فشل تحديث الملف الشخصي",
+  "selectBusinessIdFirst": "اختر معرف النشاط أولاً",
+  "orderNumberRequired": "رقم الطلب مطلوب",
+  "orderCreated": "تم إنشاء الطلب",
+  "orderCreateFailed": "فشل إنشاء الطلب",
+  "orderPicked": "تم استلام الطلب",
+  "orderPickupFailed": "فشل الاستلام",
+  "cashAmountRequired": "المبلغ المستلم مطلوب للدفع النقدي",
+  "orderDelivered": "تم تسليم الطلب",
+  "orderDeliveryFailed": "فشل التسليم",
+  "orderCancelled": "تم إلغاء الطلب",
+  "orderCancelFailed": "تعذر الإلغاء",
+  "home": "الرئيسية",
+  "orders": "الطلبات",
+  "checkInOut": "تسجيل الدخول/الخروج",
+  "profile": "الملف الشخصي",
+  "driverNameFallback": "اسم السائق",
+  "unknown": "غير معروف",
+  "logout": "تسجيل الخروج",
+  "ordersSelected": "الطلبات (المحددة)",
+  "deliveredPercent": "نسبة التسليم",
+  "delivered": "تم التسليم",
+  "pickup": "تم الاستلام",
+  "cancelled": "تم الإلغاء",
+  "thisMonth": "هذا الشهر",
+  "assignedVehicle": "المركبة المخصصة",
+  "plate": "رقم اللوحة: ",
+  "requestsTitle": "الطلبات",
+  "requestsSubtitle": "طلبات الوقود وشحن الإنترنت",
+  "businessesAndIds": "المتاجر والمعرّفات",
+  "checkinRequiredAccess": "يجب تسجيل الحضور للوصول إلى المعرّفات",
+  "checkinPrompt": "يرجى تسجيل الحضور لفتح معرفات الأعمال المخصصة والبدء في الطلبات.",
+  "goToCheckin": "الانتقال إلى تسجيل الحضور",
+  "noIdsAssigned": "لا توجد معرفات مخصصة بعد. اسحب للتحديث أو تواصل مع المشرف.",
+  "platformId": "معرف المنصة: ",
+  "currentLocation": "الموقع الحالي",
+  "noAddress": "لا يوجد عنوان متاح",
+  "coordinates": "الإحداثيات: {lat}, {lng}",
+  "@coordinates": {
+    "placeholders": {
+      "lat": {},
+      "lng": {}
+    }
+  },
+  "openInMaps": "فتح في الخرائط",
+  "ordersHeading": "الطلبات",
+  "noOrders": "لا توجد طلبات",
+  "active": "نشط",
+  "completed": "مكتمل",
+  "statusCancelled": "ملغي",
+  "statusDelivered": "تم التسليم",
+  "statusPicked": "تم الاستلام",
+  "statusPending": "قيد الانتظار",
+  "orderFallback": "طلب {id}",
+  "@orderFallback": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "orderNumberValue": "رقم الطلب: {orderNumber}",
+  "@orderNumberValue": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "businessIdValue": "معرف المتجر: {value}",
+  "@businessIdValue": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "pickupTime": "وقت الاستلام: {time}",
+  "@pickupTime": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "deliveredTime": "وقت التسليم: {time}",
+  "@deliveredTime": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "working": "جارٍ العمل...",
+  "markPickup": "تسجيل الاستلام",
+  "deliverAction": "تسليم",
+  "paymentType": "نوع الدفع",
+  "wallet": "المحفظة",
+  "cash": "نقداً",
+  "online": "إلكتروني",
+  "amountReceivedRequiredCash": "المبلغ المستلم (مطلوب للدفع النقدي)",
+  "amountPaidOptional": "المبلغ المدفوع (اختياري)",
+  "cancelOrderAction": "إلغاء الطلب",
+  "cancelReasonLabel": "سبب الإلغاء",
+  "cancelReasonHint": "أدخل السبب",
+  "cancelReasonRequired": "السبب مطلوب",
+  "cancelReasonTypeRequired": "يرجى اختيار سبب الإلغاء",
+  "cancelByCustomer": "ألغى العميل الطلب",
+  "cancelByBusiness": "أُلغي من {businessName}",
+  "@cancelByBusiness": {
+    "placeholders": {
+      "businessName": {}
+    }
+  },
+  "cancelByOther": "سبب آخر",
+  "submitting": "جاري الإرسال...",
+  "markDelivered": "تسجيل التسليم",
+  "checkinTitle": "تسجيل الحضور",
+  "meterReading": "قراءة العداد",
+  "meterReadingHintCurrent": "أدخل قراءة العداد الحالية",
+  "uploadMeterImage": "ارفع صورة العداد",
+  "clickSelectImage": "اضغط لاختيار صورة",
+  "profileTakePhoto": "التقاط صورة",
+  "profileChooseFile": "اختيار ملف",
+  "checkingIn": "جاري تسجيل الحضور...",
+  "checkoutTitle": "تسجيل الخروج",
+  "meterReadingHintFinal": "أدخل قراءة العداد النهائية",
+  "checkingOut": "جاري تسجيل الخروج...",
+  "personalInformation": "المعلومات الشخصية",
+  "fullName": "الاسم الكامل",
+  "mobileNumber": "رقم الجوال",
+  "nationality": "الجنسية",
+  "language": "اللغة",
+  "changePassword": "تغيير كلمة المرور",
+  "leaveBlankPassword": "اترك الحقول فارغة إذا لا تريد تغيير كلمة المرور",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة",
+  "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
+  "saving": "جاري الحفظ...",
+  "saveChanges": "حفظ التغييرات",
+  "newOrderFor": "طلب جديد لـ {businessName}",
+  "@newOrderFor": {
+    "placeholders": {
+      "businessName": {}
+    }
+  },
+  "businessIdLabel": "معرف المتجر: {value}",
+  "@businessIdLabel": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "orderNumberInputLabel": "رقم الطلب",
+  "orderNumberHint": "أدخل رقم الطلب",
+  "creating": "جاري الإنشاء...",
+  "createOrder": "إنشاء طلب",
+  "deliverOrderTitle": "تسليم الطلب {orderNumber}",
+  "@deliverOrderTitle": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "splashCheckingUpdates": "جارٍ التحقق من التحديثات...",
+  "splashCheckingVersion": "جارٍ التحقق من إصدار التطبيق...",
+  "splashValidatingSession": "جارٍ التحقق من الجلسة...",
+  "splashOpeningApp": "جارٍ فتح التطبيق...",
+  "splashUpdateCheckFailedOpening": "فشل التحقق من التحديث. جارٍ فتح التطبيق...",
+  "splashUpdatesUnavailableOpening": "التحديثات غير متاحة في هذه النسخة. جارٍ فتح التطبيق...",
+  "splashUpdateDownloadedRestarting": "تم تنزيل التحديث. جارٍ إعادة تشغيل التطبيق...",
+  "splashUpdateReadyTitle": "التحديث جاهز",
+  "splashUpdateReadyBody": "تم تنزيل آخر تحديث. سيتم إغلاق التطبيق الآن حتى تتمكن من إعادة فتحه بالتحديث الجديد.",
+  "forceUpdateTitle": "التحديث مطلوب",
+  "forceUpdateLinkMissing": "رابط التحديث غير مُعد على الخادم.",
+  "forceUpdateLinkInvalidConfig": "رابط التحديث غير مُعد بشكل صحيح.",
+  "forceUpdateLinkOpenFailed": "تعذر فتح رابط التحديث.",
+  "forceUpdateLinkInvalid": "رابط التحديث غير صالح.",
+  "forceUpdateOpening": "جارٍ الفتح...",
+  "forceUpdateNow": "حدّث الآن",
+  "forceUpdateBlockedMessage": "تم حظر هذه النسخة. يرجى التحديث للمتابعة.",
+  "forceUpdateDefaultMessage": "يتوفر إصدار جديد من التطبيق. يرجى التحديث للمتابعة.",
+  "forceUpdateVersionSummary": "الحالي: {currentVersion}  الأحدث: {latestVersion}",
+  "@forceUpdateVersionSummary": {
+    "placeholders": {
+      "currentVersion": {},
+      "latestVersion": {}
+    }
+  },
+  "forgotRecoverTitle": "استعادة حسابك",
+  "forgotRecoverSubtitle": "أدخل رقم الإقامة أو البريد الإلكتروني للحصول على رمز إعادة التعيين.",
+  "forgotIqamaOrEmailLabel": "رقم الإقامة أو البريد الإلكتروني",
+  "forgotIqamaOrEmailValidation": "يرجى إدخال رقم الإقامة أو البريد الإلكتروني.",
+  "forgotEnterIqamaOrEmail": "أدخل رقم الإقامة أو البريد الإلكتروني.",
+  "forgotEnterIqamaOrEmailFirst": "أدخل رقم الإقامة أو البريد الإلكتروني أولاً.",
+  "forgotOtpSent": "تم إرسال رمز التحقق إلى بريدك الإلكتروني.",
+  "forgotOtpSendFailed": "تعذر إرسال رمز التحقق.",
+  "forgotEnterOtp": "أدخل رمز التحقق المكون من 6 أرقام.",
+  "forgotOtpVerified": "تم التحقق من رمز التحقق. يمكنك الآن إعادة تعيين كلمة المرور.",
+  "forgotOtpVerificationFailed": "فشل التحقق من رمز التحقق.",
+  "forgotOtpResent": "تمت إعادة إرسال رمز التحقق. يرجى التحقق من بريدك الإلكتروني.",
+  "forgotOtpResendFailed": "تعذر إعادة إرسال رمز التحقق.",
+  "forgotVerifyOtpFirst": "تحقق من رمز التحقق أولاً.",
+  "forgotPasswordResetSuccessMessage": "تمت إعادة تعيين كلمة المرور. يرجى تسجيل الدخول بكلمة المرور الجديدة.",
+  "forgotPasswordResetFailed": "تعذر إعادة تعيين كلمة المرور.",
+  "forgotPasswordResetSnackBar": "تمت إعادة تعيين كلمة المرور بنجاح.",
+  "forgotSendOtp": "إرسال رمز التحقق",
+  "forgotOtpSentPrompt": "أرسلنا رمز تحقق إلى بريدك الإلكتروني. أدخله أدناه للمتابعة.",
+  "forgotOtpLabel": "رمز تحقق من 6 أرقام",
+  "forgotVerifyOtp": "التحقق من الرمز",
+  "forgotResend": "إعادة الإرسال",
+  "forgotConfirmPassword": "تأكيد كلمة المرور",
+  "forgotPasswordMinLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل.",
+  "forgotPasswordsMismatch": "كلمتا المرور غير متطابقتين.",
+  "forgotResetPassword": "إعادة تعيين كلمة المرور",
+  "notificationPickupPendingTitle": "الاستلام معلق",
+  "notificationPickupPendingBody": "الطلب {orderNumber} يحتاج إلى استلام.",
+  "@notificationPickupPendingBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationDeliveryPendingTitle": "التسليم معلق",
+  "notificationDeliveryPendingBody": "الطلب {orderNumber} يحتاج إلى تسليم.",
+  "@notificationDeliveryPendingBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationCheckinCompleteTitle": "اكتمل تسجيل الحضور",
+  "notificationCheckinCompleteBody": "تم تسجيل حضورك بنجاح.",
+  "notificationCheckoutCompleteTitle": "اكتمل تسجيل الخروج",
+  "notificationCheckoutCompleteBody": "تم تسجيل خروجك بنجاح.",
+  "notificationOrderQueuedTitle": "تمت جدولة الطلب",
+  "notificationOrderQueuedBody": "تم حفظ الطلب {orderNumber}. ستعمل المزامنة تلقائياً.",
+  "@notificationOrderQueuedBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "notificationOrderPickupQueuedTitle": "تمت جدولة استلام الطلب",
+  "notificationOrderDeliveryQueuedTitle": "تمت جدولة تسليم الطلب",
+  "notificationOrderSavedForSyncBody": "تم حفظ الطلب {orderNumber} للمزامنة.",
+  "@notificationOrderSavedForSyncBody": {
+    "placeholders": {
+      "orderNumber": {}
+    }
+  },
+  "toastOrderQueuedLocalSync": "تمت جدولة الطلب وحفظه محلياً. ستتم المزامنة خلال 5 دقائق.",
+  "toastPickupQueued": "تمت جدولة الاستلام. ستعمل المزامنة تلقائياً خلال 5 دقائق كحد أقصى.",
+  "toastCancellationQueued": "تمت جدولة الإلغاء. ستعمل المزامنة تلقائياً خلال 5 دقائق كحد أقصى.",
+  "toastDeliveryQueued": "تمت جدولة التسليم. ستعمل المزامنة تلقائياً خلال 5 دقائق كحد أقصى."
+}

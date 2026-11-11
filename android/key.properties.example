@@ -1,0 +1,6 @@
+# Copy this file to android/key.properties (do not commit that file)
+# and replace values with your release signing keystore details.
+storePassword=REPLACE_WITH_STORE_PASSWORD
+keyPassword=REPLACE_WITH_KEY_PASSWORD
+keyAlias=REPLACE_WITH_KEY_ALIAS
+storeFile=REPLACE_WITH_KEYSTORE_PATH_RELATIVE_TO_android_FOLDER

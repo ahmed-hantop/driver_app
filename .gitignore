@@ -1,0 +1,42 @@
+# Secrets
+.env
+**/.env
+!.env.example
+
+# Legacy / archived
+tmp_accident_legacy/
+
+# Presentation assets (large files, auto-generated)
+screenshots/
+DMS-presentation.html
+graphify-out/
+
+# Large SQL dumps
+*.sql
+!DMS-development-digitalmediafox/database/ci/schema-snapshot.sql
+
+# PDFs (freelance contracts etc.)
+*.pdf
+
+# Test output
+*.json
+!package.json
+!package-lock.json
+!DMS-development-digitalmediafox/docs/audit-coverage-baseline.json
+
+# Claude Code / AI tools
+.claude/
+grafel-chats/
+
+# Local DMS AI runtime and private training state
+DMS_AI/local_ai/AI model/work/dms-live.env
+DMS_AI/local_ai/AI model/work/providers.env
+DMS_AI/local_ai/AI model/work/ornith/tools/
+DMS_AI/local_ai/AI model/work/qwen-coder/models/
+DMS_AI/local_ai/AI model/work/qwen-coder/*.log
+DMS_AI/local_ai/AI model/training/*.db
+DMS_AI/local_ai/AI model/training/*.log
+DMS_AI/local_ai/AI model/work/__pycache__/
+DMS_AI/local_ai/training/*.db
+DMS_AI/local_ai/training/*.log
+DMS_AI/local_ai/training/*.jsonl

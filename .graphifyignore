@@ -1,0 +1,55 @@
+# Graphify ignore — exclude from full-workspace knowledge graph build
+# Note: nested .graphifyignore files (e.g. DMS-development-digitalmediafox/.graphifyignore)
+# are NOT inherited when scanning from this root, so relevant excludes are repeated here.
+
+# Vendor / dependency / build artifacts (any depth)
+vendor/
+node_modules/
+storage/
+bootstrap/cache/
+public/
+**/resources/assets/libs/
+build/
+.dart_tool/
+.gradle/
+Pods/
+alembic/versions/__pycache__/
+__pycache__/
+
+# Duplicate/legacy nested copy of the main app
+DMS-development-digitalmediafox/ilabs/
+
+# Secrets and signing material — never index
+speedlogi-driver-release/
+*.jks
+*.keystore
+key.properties
+*service-account*.json
+*.env*
+!.env.example
+*.lock
+
+# Logs / temp / large data dumps
+*.log
+tmp_*
+Import_Database/
+resources_backup_before_old_merge_20260307_084727/
+
+# Image and binary assets (icons, screenshots, theme art — no vision extraction)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+*.mp4
+*.mov
+*.mp3
+*.zip
+*.tar
+*.gz
+*.woff
+*.woff2
+*.ttf
+*.eot
